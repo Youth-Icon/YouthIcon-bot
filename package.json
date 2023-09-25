@@ -1,0 +1,30 @@
+{
+  "dependencies": {
+    "@octokit/rest": "^20.0.1",
+    "axios": "^1.5.0",
+    "discord.js": "^14.13.0",
+    "dotenv": "^16.3.1",
+    "nodemon": "^3.0.1"
+  },
+  "name": "youthicon",
+  "description": "🤖 Discord JS 14 Bot for YouthIcon",
+  "version": "1.0.0",
+  "main": "src/index",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hellofaizan/yearprogress.git"
+  },
+  "keywords": [
+    "yearprogress"
+  ],
+  "author": "HelloFaizan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hellofaizan/yearprogress/issues"
+  },
+  "homepage": "https://github.com/hellofaizan/yearprogress#readme"
+}

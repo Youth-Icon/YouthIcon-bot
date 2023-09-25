@@ -6,6 +6,6 @@ module.exports = {
         .setDescription('Replies with Pong!'),
     async execute(interaction, client) {
         // To make the reply private to the user, use interaction.reply('Pong!', {ephemeral: true});
-        await interaction.reply('Pong!');
+        await interaction.reply('Pong! Working on '+ client.ws.ping+'ms');
     },
 }
