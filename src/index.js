@@ -1,11 +1,12 @@
 const { Client, GatewayIntentBits,  EmbedBuilder} = require('discord.js');
+require('dotenv').config();
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const jsoncommands = require('./commands/data/commands.json');
-const datasecrets = require('./secrets.json')
-const token = datasecrets.token;
-const clientId = datasecrets.id;
+
+const token = process.env.DISCORD_TOKEN;
+const clientId = process.env.DISCORD_CLIENT_ID;
 
 const commands = [].map(command => command.toJSON());
 jsoncommands.map(commandData =>{
@@ -57,9 +58,6 @@ client.on('interactionCreate', async interaction => {
       .setTitle('Invite Link')
       .setDescription('This is the invitation link https://discord.gg/dGWGvhJDDh')
       
-
-
-
     await interaction.reply({ embeds: [embed]});
 
   }
