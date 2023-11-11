@@ -1,0 +1,6 @@
+[
+    {
+        "name": "invite",
+        "description": "Sends you an invitation link to the server"
+    }
+]
