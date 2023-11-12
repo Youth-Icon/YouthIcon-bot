@@ -2,7 +2,7 @@ const axios = require('axios')
 const {EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder} = require('discord.js')
 module.exports = {
     projects: async function projects(interaction){
-        const url = "https://api.github.com/orgs/Youth-Icon/repos";
+        const url = "https://api.github.com/search/repositories?q=topic:youthicon+org:Youth-Icon";
         axios.get(url)
         .then(async (response) =>{
             const embedMessage = new EmbedBuilder()
