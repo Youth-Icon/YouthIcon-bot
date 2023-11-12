@@ -2,5 +2,9 @@
     {
         "name": "invite",
         "description": "Sends you an invitation link to the server"
+    },
+    {
+        "name": "join",
+        "description": "Use this command to joing our github organization"
     }
 ]
