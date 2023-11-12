@@ -6,5 +6,9 @@
     {
         "name": "join",
         "description": "Use this command to joing our github organization"
+    },
+    {
+        "name": "projects",
+        "description": "View all Youth Icon github projects"
     }
 ]

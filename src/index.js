@@ -4,7 +4,8 @@ const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const jsoncommands = require('./commands/data/commands.json');
-const {join, ticketclick, ModalSubmit} = require('./functions/join')
+const {join, ticketclick, ModalSubmit} = require('./functions/join');
+const {projects} = require('./functions/projects')
 const token = process.env.DISCORD_TOKEN;
 const clientId = process.env.DISCORD_CLIENT_ID;
 
@@ -60,6 +61,9 @@ client.on('interactionCreate', async interaction => {
     }
     if (commandName === 'join') {
       await join(interaction);
+    }
+    if(commandName =="projects"){
+      await projects(interaction)
     }
   }else if(interaction.isButton()){
     await ticketclick(interaction)
