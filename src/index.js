@@ -4,7 +4,8 @@ const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const jsoncommands = require('./commands/data/commands.json');
-
+const {join, ticketclick, ModalSubmit} = require('./functions/join');
+const {projects} = require('./functions/projects')
 const token = process.env.DISCORD_TOKEN;
 const clientId = process.env.DISCORD_CLIENT_ID;
 
@@ -38,7 +39,7 @@ const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
     GatewayIntentBits.GuildMessages,
-    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.GuildMessageReactions,
   ],
 });
 
@@ -47,19 +48,28 @@ client.on('ready', () => {
 });
 
 client.on('interactionCreate', async interaction => {
-  if (!interaction.isCommand()) return;
+  if (interaction.isCommand()) {
+    const { commandName } = interaction;
 
-  const { commandName } = interaction;
-
-  if (commandName === 'invite') {
-    
-    const embed = new EmbedBuilder()
-      .setColor('#E85D04')
-      .setTitle('Invite Link')
-      .setDescription('This is the invitation link https://discord.gg/dGWGvhJDDh')
-      
-    await interaction.reply({ embeds: [embed]});
-
+    if (commandName === 'invite') {
+      const embed = new EmbedBuilder()
+        .setColor('#E85D04')
+        .setTitle('Invite Link')
+        .setDescription('This is the invitation link https://discord.gg/dGWGvhJDDh');
+        
+      await interaction.reply({ embeds: [embed] });
+    }
+    if (commandName === 'join') {
+      await join(interaction);
+    }
+    if(commandName =="projects"){
+      await projects(interaction)
+    }
+  }else if(interaction.isButton()){
+    await ticketclick(interaction)
+  }else if(interaction.isModalSubmit()){
+  
+    await ModalSubmit(interaction, client)
   }
 });
 
