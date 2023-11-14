@@ -10,5 +10,17 @@
     {
         "name": "projects",
         "description": "View all Youth Icon github projects"
+    },
+    {
+        "name": "reportproblem",
+        "description": "Use this command to report a problem"
+    },
+    {
+        "name": "reportuser",
+        "description": "Use this command to report a discord user"
+    },
+    {
+        "name": "reportprofile",
+        "description": "Use this command to report an Xprofile user"
     }
 ]
