@@ -58,7 +58,7 @@ client.on('interactionCreate', async interaction => {
       const embed = new EmbedBuilder()
         .setColor('#E85D04')
         .setTitle('Invite Link')
-        .setDescription('This is the invitation link https://discord.gg/dGWGvhJDDh');
+        .setDescription('This is the invitation link https://discord.gg/vUHMxPvege');
         
       await interaction.reply({ embeds: [embed] });
     }
