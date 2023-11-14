@@ -47,6 +47,12 @@ module.exports = {
             id: client.user.id,
             allow: [PermissionsBitField.Flags.SendMessages],
             },
+            {
+                id: interaction.user.id,
+                allow: [
+                    PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.ViewChannel
+                ]
+            }
         ],
         });
         const fullName = interaction.fields.getTextInputValue('nameInput');

@@ -40,8 +40,14 @@ module.exports = {
             },
             {
             id: client.user.id,
-            allow: [PermissionsBitField.Flags.SendMessages],
+            allow: [PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.ViewChannel],
             },
+            {
+                id: interaction.user.id,
+                allow: [
+                    PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.ViewChannel
+                ]
+            }
         ],
         });
         const fullName = interaction.fields.getTextInputValue('nameInput');
@@ -65,7 +71,7 @@ module.exports = {
         const nudge = new ButtonBuilder()
         .setStyle(ButtonStyle.Secondary)
         .setCustomId('nudgeReportProblem')
-        .setLabel('Nudge')
+        .setLabel('Ping Staff')
         const row = new ActionRowBuilder()
         .addComponents(close, nudge)
         channel.send({ embeds: [embed], components: [row]});
