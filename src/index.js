@@ -6,9 +6,12 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const jsoncommands = require('./commands/data/commands.json');
 const {join, ticketclick, ModalSubmit} = require('./functions/join');
 const {projects} = require('./functions/projects')
+const {reportproblem, reportproblemsubmitted} = require('./functions/reportproblem')
+const { nudge, close} = require('./functions/globalFunctions')
+const { reportdiscord, submitreport} = require('./functions/reportDiscordUser')
 const token = process.env.DISCORD_TOKEN;
 const clientId = process.env.DISCORD_CLIENT_ID;
-
+const { reportxprofile, submitxprofilereport} = require('./functions/reportxprofileuser')
 const commands = [].map(command => command.toJSON());
 jsoncommands.map(commandData =>{
   commands.push(
@@ -65,11 +68,35 @@ client.on('interactionCreate', async interaction => {
     if(commandName =="projects"){
       await projects(interaction)
     }
+    if(commandName =="reportproblem"){
+      await reportproblem(interaction)
+    }
+    if(commandName =="reportuser"){
+      await reportdiscord(interaction)
+    }
+    if(commandName =="reportprofile"){
+      await reportxprofile(interaction)
+    }
   }else if(interaction.isButton()){
-    await ticketclick(interaction)
+    if(interaction.customId == "open_ticket_org"){
+      await ticketclick(interaction)
+    }else if(interaction.customId == "nudgeReportProblem"){
+      await nudge(interaction)
+    }else if(interaction.customId =="closeReportProblem"){
+      await close(interaction, client)
+    }
+    
   }else if(interaction.isModalSubmit()){
-  
-    await ModalSubmit(interaction, client)
+    if(interaction.customId ==="modalTicketJoin"){
+      await ModalSubmit(interaction, client)
+    }else if(interaction.customId ==="reportproblemForm"){
+      await reportproblemsubmitted(interaction, client)
+    }else if(interaction.customId == "reportdiscorduser"){
+      await submitreport(interaction, client)
+    }else if(interaction.customId =="reportxprofileuser"){
+      await submitxprofilereport(interaction, client)
+    }
+    
   }
 });
 

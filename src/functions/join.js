@@ -1,5 +1,5 @@
 const { EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, ChannelType, PermissionsBitField} = require('discord.js');
-
+const data = require('./globalvars.json')
 module.exports = {
   join: async function join(interaction) {
     const embed = new EmbedBuilder()
@@ -45,7 +45,7 @@ module.exports = {
   ModalSubmit: async function submit(interaction, client) {
     // Ensure the guild is accessible through the client
     const guild = client.guilds.cache.get(interaction.guildId);
-
+    const id = data.team_role
     // Create the channel
     const channel = await guild.channels.create({
       name: 'Ticket',
@@ -56,7 +56,7 @@ module.exports = {
           deny: [PermissionsBitField.Flags.ViewChannel],
         },
         {
-          id: '1155351330471284797',
+          id: id,
           allow: [PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.ViewChannel],
         },
         {
